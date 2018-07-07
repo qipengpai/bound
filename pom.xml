@@ -36,6 +36,7 @@
 		<module>eureka-server</module>
 		<module>eureka-client</module>
 		<module>config-server</module>
+		<module>qiniu-server</module>
 
 		<!--注册中心客户端-->
 		<!--<module>eureka-console</module>-->

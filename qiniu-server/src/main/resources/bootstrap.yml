@@ -1,31 +1,18 @@
-server:
-  port: 8050
 spring:
   application:
-    name: config-server
+    name: qiniu-server
   cloud:
     config:
-      server:
-        git:
-          uri: https://github.com/qipengpai/bound
-          search-paths: config-repo
-          username: 1074723451@qq.com
-          password: pp210510.
-    bus:
-      trace:
-        enabled: true # 开启cloud bus的跟踪
-      refresh:
-        enabled: true
-      env:
-        enabled: true
-      enabled: true
+      profile: pro
+      label: master
+      discovery:
+        enabled: true                                 # 默认false，设为true表示使用注册中心中的configserver配置而不自己配置configserver的uri
+        serviceId: config-server  # 指定config server在服务发现中的serviceId，默认为：configserver
   rabbitmq:
       host: localhost
       port: 5672
       username: guest
       password: guest
-#          force-pull，配置当本地目录与远程配置有冲突时是否强制拉取配置
-#          代码很简单，即为标准的spring-boot项目启动代码
 eureka:
   client:
     healthcheck:
@@ -47,3 +34,5 @@ eureka:
     status-page-url: http://${spring.cloud.client.ipAddress}:${server.port}/client/doc.html # ${server.port}为该服务的端口号
 #    status-page-url: http://${docker.ipAddress}:${server.port}/client/doc.html # ${server.port}为该服务的端口号
 
+
+# 参考文档：https://github.com/spring-cloud/spring-cloud-config/blob/master/docs/src/main/asciidoc/spring-cloud-config.adoc#discovery-first-bootstrap

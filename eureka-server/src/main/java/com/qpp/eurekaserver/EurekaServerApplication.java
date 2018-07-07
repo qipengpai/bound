@@ -18,6 +18,6 @@ public class EurekaServerApplication {
 //    	2服务器采用此方法 java -jar   --spring.profiles.active=slave3;
 //    	 SpringApplication.run(DreiEurekaServerApp.class, args);
 		ConfigurableApplicationContext context = new SpringApplicationBuilder(EurekaServerApplication.class).
-				profiles("slave3").run(args);
+				profiles("slave1").run(args);
 	}
 }
