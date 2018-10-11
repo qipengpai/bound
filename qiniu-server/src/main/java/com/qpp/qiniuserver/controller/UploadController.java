@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class UploadController {
@@ -40,5 +42,12 @@ public class UploadController {
 
         return this.access_key+"   "+secret_key+"   "+bucketname+"   "+httpurl+"   "+fops+"   "+pipeline;
 
+    }
+
+    public static void main(String[] args) {
+        Map<String,String> map = new HashMap<>(10,0.75f);
+        map.put("1","11");
+        map.put("2","22");
+        Map<String,String> map2 = new HashMap<>(map);
     }
 }

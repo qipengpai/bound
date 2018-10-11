@@ -1,7 +1,7 @@
 package com.qpp.adminmanage.web.user;
 
-import com.qpp.utils.DateUtil;
-import com.qpp.utils.ValidateUtil;
+import com.qpp.utils.common.DateUtil;
+import com.qpp.utils.judge.ValidateUtil;
 import com.qpp.adminmanage.entity.ResponseResult;
 import com.qpp.adminmanage.entity.UserDTO;
 import com.qpp.adminmanage.entity.UserRolesVO;

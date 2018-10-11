@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 
 
 /** 
@@ -26,7 +27,8 @@ public class EurekaManageController {
 
 	
 	@RequestMapping(value = "/resume", method = RequestMethod.POST)
-	public void up( ) {  
+	public void up( ) {
+		ArrayList arrayList=new ArrayList();
 		applicationInfoManager.getInfo().setStatus(InstanceStatus.UP);
 		upOrDown = true ;
 	}  

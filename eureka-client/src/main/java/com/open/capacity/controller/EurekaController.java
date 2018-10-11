@@ -39,6 +39,13 @@ public class EurekaController {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
+	/**
+	 * @Author qipengpai
+	 * @Description //TODO 查看eureka的状态
+	 * @Date 10:25 2018/9/17
+	 * @Param []
+	 * @return java.lang.String
+	 **/
 	@ResponseBody
 	@RequestMapping(value = "status", method = RequestMethod.GET)
 	public String status() {

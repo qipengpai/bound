@@ -2,7 +2,7 @@ package com.qpp.adminmanage.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.qpp.utils.DateUtil;
+import com.qpp.utils.common.DateUtil;
 import com.qpp.adminmanage.dao.RoleMapper;
 import com.qpp.adminmanage.dao.UserMapper;
 import com.qpp.adminmanage.dao.UserRoleMapper;

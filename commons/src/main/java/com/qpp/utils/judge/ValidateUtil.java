@@ -1,16 +1,15 @@
-package com.qpp.utils;
+package com.qpp.utils.judge;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
 
 /**
- * @项目名称：wyait-manage
- * @包名：com.wyait-common.utils
- * @类描述：
- * @创建人：wyait
- * @创建时间：2018-01-08 15:36
- * @version：V1.0
+ * @author qipengpai
+ * @Title: UTF8Util
+ * @ProjectName bound
+ * @Description: TODO 校验工具类
+ * @date 13:44 2018/10/10
  */
 public class ValidateUtil {
 
@@ -18,13 +17,13 @@ public class ValidateUtil {
             .compile("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$");
 
     /**
-     *
-     * @描述：校验email格式
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:38:45
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验email格式
+     * @Date 15:43 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isEmail(String str) {
         return str != null && P_EMAIL.matcher(str).matches();
     }
@@ -45,13 +44,13 @@ public class ValidateUtil {
             .compile("");
 
     /**
-     *
-     * @描述：密码校验：匹配小写字母、大写字母、数字、特殊符号的两种及两种以上【非中文】
-     * @创建人：wyait
-     * @创建时间：2017年1月5日15:19:17
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 密码校验：匹配小写字母、大写字母、数字、特殊符号的两种及两种以上【非中文】
+     * @Date 15:43 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isPassword(String str) {
         return str != null && PASSWORD.matcher(str).matches();
     }
@@ -69,13 +68,13 @@ public class ValidateUtil {
     private static final Pattern P_MOBILEPHONE = Pattern.compile("^1\\d{10}$");
 
     /**
-     *
-     * @描述：校验是否为11位1开头手机号
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:39:01
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验是否为11位1开头手机号
+     * @Date 15:45 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isMobilephone(String str) {
         return StringUtils.isNotBlank(str) && P_MOBILEPHONE.matcher(str).matches();
     }
@@ -84,13 +83,13 @@ public class ValidateUtil {
     private static final Pattern P_NUMBER = Pattern.compile("^[-\\+]?[\\d]+$");
 
     /**
-     *
-     * @描述：校验是否正负数字
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:39:21
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验是否正负数字
+     * @Date 15:45 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isNumber(String str) {
         return StringUtils.isNotBlank(str) && P_NUMBER.matcher(str).matches();
     }
@@ -99,13 +98,13 @@ public class ValidateUtil {
     private static final Pattern QQ = Pattern.compile("[1-9][0-9]{4,12}");
 
     /**
-     *
-     * @描述：校验是否为4-12位正整数
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:39:42
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO QQ校验是否为4-12位正整数
+     * @Date 15:45 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isQQ(String str) {
         return StringUtils.isNotBlank(str) && QQ.matcher(str).matches();
     }
@@ -114,13 +113,13 @@ public class ValidateUtil {
     private static final Pattern CODE = Pattern.compile("[0-9]{6}$");
 
     /**
-     *
-     * @描述：校验是否为6位数字验证码
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:39:59
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验是否为6位数字验证码
+     * @Date 15:46 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isCode(String str) {
         return StringUtils.isNotBlank(str) && CODE.matcher(str).matches();
     }
@@ -129,13 +128,13 @@ public class ValidateUtil {
     private static final Pattern PICCODE = Pattern.compile("\\w{4}$");
 
     /**
-     *
-     * @描述：校验是否为4位随机正整数和字母
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:40:15
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验是否为4位随机正整数和字母
+     * @Date 15:46 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isPicCode(String str) {
         return str != null && PICCODE.matcher(str).matches();
     }
@@ -144,13 +143,13 @@ public class ValidateUtil {
     private static final Pattern P_DOUBLE = Pattern.compile("");
 
     /**
-     *
-     * @描述：校验是否为正负数（包含小数、整数）
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:40:53
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验是否为正负数（包含小数、整数）
+     * @Date 15:47 2018/10/11
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isDouble(String str) {
         return str != null && P_DOUBLE.matcher(str).matches();
     }
@@ -160,13 +159,13 @@ public class ValidateUtil {
             .compile("^[\u0391-\uFFE5]+$");
 
     /**
-     *
-     * @描述：校验是否为中文汉字
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:41:17
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验是否为中文汉字
+     * @Date 15:47 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isChinese(String str) {
         return str != null && P_CHINESE.matcher(str).matches();
     }
@@ -176,13 +175,13 @@ public class ValidateUtil {
             .compile("[\u0391-\uFFE5]");
 
     /**
-     *
-     * @描述：校验是否包含中文
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:41:32
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 校验是否包含中文
+     * @Date 15:47 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean hasChinese(String str) {
         return str != null && P_CHINESE_A.matcher(str).find();
     }
@@ -192,13 +191,13 @@ public class ValidateUtil {
             .compile("");
 
     /**
-     *
-     * @描述：搜索名称校验（字母、数字、汉字、下划线等符号）
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:41:49
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 搜索名称校验（字母、数字、汉字、下划线等符号）
+     * @Date 15:48 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isSearchName(String str) {
         return str != null && NAME.matcher(str).matches();
     }
@@ -226,6 +225,14 @@ public class ValidateUtil {
      */
     private static final Pattern MESCODE = Pattern.compile("^[0-9]{6}$");
 
+    /**
+     * @Author qipengpai
+     * @Description //TODO 6位数字短信验证码
+     * @Date 15:49 2018/10/10
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isMessageCode(String str) {
         return str != null && MESCODE.matcher(str).matches();
     }
@@ -237,13 +244,13 @@ public class ValidateUtil {
             .compile("");
 
     /**
-     *
-     * @描述：正整数、小数点后两位    金额校验
-     * @创建人：wyait
-     * @创建时间：2016年12月21日 下午1:44:00
-     * @param str
-     * @return
-     */
+     * @Author qipengpai
+     * @Description //TODO 正整数、小数点后两位 金额校验
+     * @Date 15:49 2018/10/11
+     * @Param [str]
+     * @Throws
+     * @return boolean
+     **/
     public static boolean isMoney(String str) {
         return str != null && MONEY.matcher(str).matches();
     }

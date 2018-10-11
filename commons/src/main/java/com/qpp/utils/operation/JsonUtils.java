@@ -1,4 +1,4 @@
-package com.qpp.utils;
+package com.qpp.utils.operation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,16 +19,16 @@ import java.util.Map.Entry;
  * @version
  */
 @SuppressWarnings("all")
-public class JSONUtils {
+public class JsonUtils {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
 
-    private JSONUtils() {
+    private JsonUtils() {
     }
 
-    private static final JSONUtils JSONUTIL = new JSONUtils();
+    private static final JsonUtils JSONUTIL = new JsonUtils();
 
-    public static JSONUtils getInstance() {
+    public static JsonUtils getInstance() {
         return JSONUTIL;
     }
 

@@ -1,5 +1,6 @@
 package com.qpp.eurekaserver;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
@@ -16,8 +17,8 @@ public class EurekaServerApplication {
 //				profiles("slave3").run(args);
 
 //    	2服务器采用此方法 java -jar   --spring.profiles.active=slave3;
-//    	 SpringApplication.run(DreiEurekaServerApp.class, args);
+// 	 SpringApplication.run(EurekaServerApplication.class, args);
 		ConfigurableApplicationContext context = new SpringApplicationBuilder(EurekaServerApplication.class).
-				profiles("slave1").run(args);
+				profiles("slave3").run(args);
 	}
 }
