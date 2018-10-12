@@ -25,15 +25,14 @@
 package com.qpp.exception;
 
 import com.alibaba.fastjson.JSONObject;
-import com.company.platform.base.baseenum.GLOBALCONFIG;
-import com.company.platform.base.baseenum.ResponseConstants;
-import com.company.platform.base.baseenum.ResponseConstantsErrorMessage;
-import com.company.platform.base.model.base.BaseHttpParamsResp;
-import com.company.platform.base.util.GzippedOutputStreamWrapper;
+
 import com.qpp.baseenum.GLOBALCONFIG;
+import com.qpp.baseenum.ResponseConstants;
+import com.qpp.baseenum.ResponseConstantsErrorMessage;
+import com.qpp.exception.children.UserTokenException;
+import com.qpp.model.result.RespInfo;
+import com.qpp.utils.file.GzippedOutputStreamWrapper;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.log;
-import org.slf4j.logFactory;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -70,13 +69,12 @@ public class GlobalControllerExceptionHandler {
 	@ExceptionHandler({ Exception.class, Throwable.class })
 	public void errorHandler(HttpServletRequest request, HttpServletResponse response, Exception e) {
 		String requestUrl = request.getRequestURI();// 获取请求路径
-		BaseHttpParamsResp baseHttpParamsResp = BaseHttpParamsResp.requestError(ResponseConstants.FAIL.getRetCode(),
+		RespInfo respInfo = RespInfo.requestError(ResponseConstants.FAIL.getRetCode(),
 				ResponseConstantsErrorMessage.getErrorMessage(requestUrl));
-		baseHttpParamsResp.createSign();
-		log.error(baseHttpParamsResp.toJSONString());
+		log.error(respInfo.toJSONString());
 		log.error(e.getMessage());
 		e.printStackTrace();
-		this.returnMessage(request, response, baseHttpParamsResp);
+		this.returnMessage(request, response, respInfo);
 	}
 
 	/** 
@@ -91,7 +89,7 @@ public class GlobalControllerExceptionHandler {
 	@ResponseBody
 	public void validateErrorHandler(HttpServletRequest request, HttpServletResponse response,
                                      MethodArgumentNotValidException e) {
-		BaseHttpParamsResp baseHttpParamsResp = null;
+        RespInfo respInfo = null;
 		BindingResult bindingResult = e.getBindingResult();
 		if (bindingResult.hasErrors()) {
 			List<FieldError> errorList = bindingResult.getFieldErrors();
@@ -118,57 +116,57 @@ public class GlobalControllerExceptionHandler {
 					errorMsg.append(fieldError.getDefaultMessage());
 				}
 			}
-			baseHttpParamsResp = BaseHttpParamsResp.requestError(ResponseConstants.FIELD_VALIDATE_ERROR.getRetCode(),
+            respInfo = RespInfo.requestError(ResponseConstants.FIELD_VALIDATE_ERROR.getRetCode(),
 					errorMsg.toString());
 		}
-		if (null == baseHttpParamsResp) {
-			baseHttpParamsResp = BaseHttpParamsResp.requestError(ResponseConstants.FIELD_VALIDATE_ERROR.getRetCode(),
+		if (null == respInfo) {
+            respInfo = RespInfo.requestError(ResponseConstants.FIELD_VALIDATE_ERROR.getRetCode(),
 					"");
 		}
-		if (baseHttpParamsResp != null) {
-			baseHttpParamsResp.createSign();
-		}
-		this.returnMessage(request, response, baseHttpParamsResp);
+		/*if (respInfo != null) {
+            respInfo.createSign();
+		}*/
+		this.returnMessage(request, response, respInfo);
 	}
 
-	/** 
-	* @Title: CustomErrorHandler 
-	* @Description: TODO(系统自定义异常处理) 
-	* @param @param e
-	* @param @return    设定文件 
-	* @return BaseHttpParamsResp    返回类型 
-	* @throws 
-	*/
+	/**
+	 * @Author qipengpai
+	 * @Description //TODO 系统自定义异常处理
+	 * @Date 10:01 2018/10/12
+	 * @Param [request, response, e]
+	 * @Throws
+	 * @return void
+	 **/
 	@ExceptionHandler(BusinessException.class)
 	@ResponseBody
 	public void CustomErrorHandler(HttpServletRequest request, HttpServletResponse response, BusinessException e) {
-		BaseHttpParamsResp baseHttpParamsResp = BaseHttpParamsResp.requestError(e.getCode(), e.getMsg());
-		baseHttpParamsResp.createSign();
-		log.error(baseHttpParamsResp.toJSONString());
-		this.returnMessage(request, response, baseHttpParamsResp);
+        RespInfo respInfo = RespInfo.requestError(e.getCode(), e.getMsg());
+		log.error(respInfo.toJSONString());
+		this.returnMessage(request, response, respInfo);
 	}
 
-	/** 
-	* @Title: returnMessage 
-	* @Description: TODO(这里用一句话描述这个方法的作用) 
-	* @param     设定文件 
-	* @return void    返回类型 
-	* @throws 
-	*/
+	/**
+	 * @Author qipengpai
+	 * @Description //TODO 返回压缩响应或者非压缩响应
+	 * @Date 9:58 2018/10/12
+	 * @Param [request, response, respInfo]
+	 * @Throws
+	 * @return void
+	 **/
 	private void returnMessage(HttpServletRequest request, HttpServletResponse response,
-                               BaseHttpParamsResp baseHttpParamsResp) {
+                               RespInfo respInfo) {
 		response.setCharacterEncoding("UTF-8");
 		String requestUrl = request.getRequestURI();// 获取请求路径
 		try {
 			if (requestUrl.contains(GLOBALCONFIG.GZIP_URI1) || requestUrl.contains(GLOBALCONFIG.GZIP_URI2)
 					|| requestUrl.contains(GLOBALCONFIG.GZIP_URI3)) {// 若指定路径，进行gzip压缩响应
 				response = ((GzippedOutputStreamWrapper) response).getHttpServletResponse();
-				GzippedOutputStreamWrapper.sendMessage(response, JSONObject.toJSON(baseHttpParamsResp).toString());
+				GzippedOutputStreamWrapper.sendMessage(response, JSONObject.toJSON(respInfo).toString());
 			} else {
 				String contentType = "application/json;charset=UTF-8";
 				response.setContentType(contentType);
 				PrintWriter out = response.getWriter();
-				out.print(JSONObject.toJSON(baseHttpParamsResp).toString());
+				out.print(JSONObject.toJSON(respInfo).toString());
 				out.flush();
 				out.close();
 			}
@@ -177,4 +175,18 @@ public class GlobalControllerExceptionHandler {
 			log.error(e1.getMessage());
 		}
 	}
+	/**
+	 * @Author qipengpai
+	 * @Description //TODO 用户token异常
+	 * @Date 10:02 2018/10/12
+	 * @Param [response, ex]
+	 * @Throws
+	 * @return BaseResponse
+	 **/
+    @ExceptionHandler(UserTokenException.class)
+    public RespInfo userTokenExceptionHandler(HttpServletResponse response, UserTokenException ex) {
+        response.setStatus(200);
+        log.error(ex.getMessage(),ex);
+        return  RespInfo.requestError(ex.getCode(), ex.getMsg());
+    }
 }

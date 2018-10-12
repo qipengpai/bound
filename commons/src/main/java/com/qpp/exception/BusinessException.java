@@ -11,7 +11,7 @@ package com.qpp.exception;
  * @date 13:44 2018/10/11
  */
 @SuppressWarnings("serial")
-public class BusinessException extends Exception {
+public class BusinessException extends RuntimeException {
 
 	/**
 	 * 异常信息
@@ -24,6 +24,7 @@ public class BusinessException extends Exception {
 	protected String code;
 	
 	public BusinessException(String code, String msgFormat){
+	    super(msgFormat);
 		this.code = code;
 		this.msg = msgFormat;
 	}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.platform.base.dao.loginAssist.LoginAssistMapper">
+	<parameterMap type="java.util.HashMap" id="paraMap" />
+	
+	<!-- 添加APP登录记录 -->
+	<insert id="addLoginRecord" parameterMap="paraMap">
+		INSERT INTO loginrecord (
+			id,
+			userId,
+			userName,
+			userRealName,
+			loginTime,
+			loginIp,
+			loginAddress,
+			logoutTime,
+			requestType,
+			sessionId,
+			appType,
+			token
+		)
+		VALUES
+		(
+		 #{id,jdbcType=VARCHAR},
+		 #{userId,jdbcType=VARCHAR},
+		 #{userName,jdbcType=VARCHAR},
+		 #{userRealName,jdbcType=VARCHAR},
+		 #{loginTime,jdbcType=TIMESTAMP},
+		 #{loginIp,jdbcType=VARCHAR},
+		 #{loginAddress,jdbcType=VARCHAR},
+		 #{logoutTime,jdbcType=TIMESTAMP},
+		 #{requestType,jdbcType=VARCHAR},
+		 #{sessionId,jdbcType=VARCHAR},
+		 #{appType,jdbcType=VARCHAR},
+		 #{token,jdbcType=VARCHAR}
+		 )
+	</insert>
+	
+	<!-- 根据用户名获取最后一次登录信息 -->
+	<select id="getLoginRecordSelectOnebyUserName" resultType="java.util.HashMap"
+		parameterType="java.lang.String">
+		SELECT
+			id,
+			userId,
+			userName,
+			userRealName,
+			loginTime,
+			loginIp,
+			loginAddress,
+			logoutTime,
+			requestType,
+			sessionId,
+			appType,
+			token
+		FROM
+			loginrecord
+		WHERE
+			userName = #{userName}
+		AND token != ''
+		AND loginTime &gt;= date_add(curdate() , INTERVAL - DAY(curdate()) + 1 DAY)
+		AND loginTime &lt;= last_day(curdate())
+		ORDER BY
+			loginTime DESC
+		LIMIT 1
+	</select>
+	
+	<!-- 根据用户ID获取登录失败信息 -->
+	<select id="getLoginFailureInfo" resultType="java.util.HashMap"
+		parameterType="java.lang.String">
+		SELECT
+			id,
+			attemptTimes
+		FROM
+			loginfailure
+		WHERE
+			userId = #{userId}
+	</select>
+	
+	
+	<!-- 根据ID更新登录失败信息 -->
+	<update id="updateLoginFailureInfo" parameterMap="paraMap">
+		UPDATE loginfailure SET
+			userId = #{userId,jdbcType=VARCHAR},
+			attemptTimes = #{attemptTimes,jdbcType=TIMESTAMP},
+			lastAttempedTime = #{lastAttempedTime,jdbcType=TIMESTAMP}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 添加登录失败信息 -->
+	<insert id="addLoginFailureInfo" parameterMap="paraMap">
+		INSERT INTO loginfailure (
+			id,
+			userId,
+			attemptTimes,
+			lastAttempedTime,
+			lastLockedTime
+		)
+		VALUES
+			(#{id,jdbcType=VARCHAR},
+			#{userId,jdbcType=VARCHAR},
+			#{attemptTimes,jdbcType=INTEGER},
+			#{lastAttempedTime,jdbcType=TIMESTAMP},
+			#{lastLockedTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<!-- 更新系统用户锁定状态 -->
+	<update id="updateSysUserLocked" parameterType="java.lang.String">
+		UPDATE sysuser SET
+			isAccountNonLocked = 1
+		WHERE id = #{id}
+	</update>
+</mapper>

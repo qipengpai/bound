@@ -28,13 +28,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 
-/** 
-* @ClassName: ResponseConstantsErrorMessage 
-* @Description: TODO(定义通用异常提示信息) 
-* @author zhengjn 
-* @date 2017年11月2日 下午4:51:35 
-*  
-*/
+
+/**
+ * @author qipengpai
+ * @Title: ResponseConstantsErrorMessage
+ * @ProjectName bound
+ * @Description: TODO 定义通用异常提示信息
+ * @date 13:44 2018/10/11
+ */
 public class ResponseConstantsErrorMessage {
 
     public static HashMap<String, String> errorMapMessage = new HashMap<String, String>();

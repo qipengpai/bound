@@ -24,7 +24,7 @@ $(function(){
 })
 var getMenus=function(data){
     //回显选中
-    var ul=$("<ul class='layui-nav layui-nav-tree' lay-filter='test'></ul>");
+    var ul=$("<ul class='layui-nav layui-nav-tree' lay-detailedfilter='test'></ul>");
     for(var i=0;i < data.length;i++){
         var node=data[i];
         if( node.istype==0){

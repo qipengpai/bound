@@ -29,6 +29,8 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
 		<thymeleaf-layout-dialect.version>2.0.5</thymeleaf-layout-dialect.version>
+        <pagehelper.version>1.2.7</pagehelper.version>
+        <guava>25.1-jre</guava>
 	</properties>
 
 	<modules>
@@ -54,6 +56,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.20</version>
+        </dependency>
 	</dependencies>
 
 	<dependencyManagement>

@@ -24,18 +24,14 @@
  *****************************************************************/
 package com.qpp.baseenum;
 
+
+
 /**
- * @ClassName: ResponseConstants
- * @Description: TODO(响应代码枚举)
- * @author zhengjn
- * @date 2017年9月24日 下午1:05:33
- */
-/**
- * @ClassName: ResponseConstants
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @author zhengjn
- * @date 2018年7月12日 下午4:18:38
- * 
+ * @author qipengpai
+ * @Title: ResponseConstants
+ * @ProjectName bound
+ * @Description: TODO 响应枚举
+ * @date 9:34 2018/10/12
  */
 public enum ResponseConstants {
 	/**

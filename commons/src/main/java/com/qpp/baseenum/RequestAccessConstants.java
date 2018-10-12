@@ -25,11 +25,11 @@
 package com.qpp.baseenum;
 
 /**
- * @ClassName: RequestAccessConstants
+ * @author qipengpai
+ * @Title: RequestAccessConstants
+ * @ProjectName bound
  * @Description: TODO 增删改查
- * @author zhengjn
- * @date 2017年9月25日 上午10:01:08
- * 
+ * @date 9:34 2018/10/12
  */
 public enum RequestAccessConstants {
 	INSERT, UPDATE, SEARCH, DELETE

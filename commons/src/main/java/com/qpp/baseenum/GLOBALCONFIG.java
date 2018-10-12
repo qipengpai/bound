@@ -24,11 +24,13 @@
  *****************************************************************/
 package com.qpp.baseenum;
 
+
 /**
- * @ClassName: GLOBALCONFIG
- * @Description: TODO(这里用一句话描述这个类的作用)
- * @author zhengjn
- * @date 2017年10月12日 上午9:03:52
+ * @author qipengpai
+ * @Title: GLOBALCONFIG
+ * @ProjectName bound
+ * @Description: TODO 系统常数
+ * @date 9:34 2018/10/12
  */
 public interface GLOBALCONFIG {
 

@@ -29,11 +29,11 @@ import com.qpp.baseenum.RequestAccessConstants;
 import java.lang.annotation.*;
 
 /**
- * @ClassName: RequestAccessAnnotation
- * @Description: TODO(增加请求访问记录注解)
- * @author zhengjn
- * @date 2017年9月25日 上午9:54:04
- * 
+ * @author qipengpai
+ * @Title: RequestAccessAnnotation
+ * @ProjectName bound
+ * @Description: TODO 增加请求访问记录注解
+ * @date 15:02 2018/10/11
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.PARAMETER, ElementType.METHOD })

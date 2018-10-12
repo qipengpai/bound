@@ -23,7 +23,7 @@
                     page: option.page || 1, //页码
                     pageSize: option.pageSize, //每页显示条数
                     pageGroup: option.pageGroup == undefined ? 5 : option.pageGroup,
-                    search: option.search, //搜索按钮(submit)的lay-filter
+                    search: option.search, //搜索按钮(submit)的lay-detailedfilter
                     searchData: option.searchData || [],
                     html: '',   //渲染后的html
                     flag: true,  //获取数据是否成功
